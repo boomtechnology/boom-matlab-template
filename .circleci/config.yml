@@ -1,0 +1,17 @@
+version: 2.1
+orbs:
+  matlab: mathworks/matlab@dev:private-repo-pilot
+  codecov: codecov/codecov@1
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202201-02
+    steps:
+      - checkout
+      # Add any repository dependencies HERE
+      # - run:
+      #     name: "Setup dependencies"
+      #     command: git clone git@github.com:boomtechnology/boom-core-functions.git
+      - matlab/install
+      - matlab/run-command:
+          command: addpath(genpath(".circleci")); run_ci();
